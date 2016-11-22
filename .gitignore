@@ -6,3 +6,4 @@ log/
 *.class
 *.patch
 *.DS_Store
+*.run

@@ -48,7 +48,7 @@ func NewResult(output string, errMsg string) *Result {
 
 func GitPush(comment, checkout string) error {
 	branch := checkoutBranch(checkout)
-	fmt.Println(branch)
+	fmt.Printf("branch = %s will be checked out", branch)
 	checkoutInfo := do(NO_CONDITION, "git checkout " + branch)
 	toContinue := checkError(checkoutInfo.err)
 	goContinue(toContinue, func() {
@@ -61,7 +61,7 @@ func GitPush(comment, checkout string) error {
 	gitCommit(comment)
 	gitPull()
 	gitPush(branch)
-	return errors.New("")
+	return nil
 }
 
 func gitAdd() error {
@@ -72,7 +72,7 @@ func gitAdd() error {
 		fmt.Println("add")
 		os.Exit(0)
 	})
-	return errors.New("")
+	return nil
 }
 
 func gitCommit(comment string) error {
@@ -83,7 +83,7 @@ func gitCommit(comment string) error {
 		fmt.Println("commit")
 		os.Exit(0)
 	})
-	return errors.New("")
+	return nil
 }
 
 func gitPull() error {
@@ -93,7 +93,7 @@ func gitPull() error {
 		fmt.Println("pull")
 		os.Exit(0)
 	})
-	return errors.New("")
+	return nil
 }
 
 func gitPush(branch string) error {
@@ -103,7 +103,7 @@ func gitPush(branch string) error {
 		fmt.Println("push")
 		os.Exit(0)
 	})
-	return errors.New("")
+	return nil
 }
 
 func checkoutBranch(checkout string) string {
@@ -128,7 +128,7 @@ func checkoutBranch(checkout string) string {
 
 func checkoutSuccess(info string) error {
 	if strings.Contains(info, "error") {
-		fmt.Println("checkout error info: ", info)
+		fmt.Printf("checkout error info: \n%s", info)
 		os.Exit(-1)
 	}
 	return nil
