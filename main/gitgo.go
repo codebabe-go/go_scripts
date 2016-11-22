@@ -135,7 +135,7 @@ func checkoutSuccess(info string) error {
 }
 
 func do(errorCondition, commandLine string) *Result {
-	fmt.Printf(`command = "%s" will be executing\n`, commandLine)
+	fmt.Printf("command = '%s' will be executing\n", commandLine)
 	var cmd = exec.Command("/bin/sh", "-c", commandLine)
 	var out, stderr bytes.Buffer
 	cmd.Stdout = &out
