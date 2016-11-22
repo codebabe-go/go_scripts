@@ -50,7 +50,7 @@ func NewResult(output string, errMsg string) *Result {
 
 func GitPush(comment, checkout string) error {
 	branch := checkoutBranch(checkout)
-	fmt.Printf("branch = %s will be checked out", branch)
+	fmt.Printf("branch = %s will be checked out\n", branch)
 	checkoutInfo := do(NO_CONDITION, "git checkout " + branch)
 	toContinue := checkError(checkoutInfo.err)
 	goContinue(toContinue, func() {
