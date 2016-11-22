@@ -1,7 +1,7 @@
 package main
 
 /**
- * git 自动提交脚本
+ * git 一键提交工具
  * 期间一旦遇到需要手动开那个解决错误, 就会丢出异常终止运行
  */
 
@@ -14,6 +14,8 @@ import (
 	"bytes"
 	"bufio"
 )
+
+// TODO: 1.完善各个continue func的功能 2.给出详细的下一步操作提示 3.给出参数完善日志输出(是否要输出到文件中) 4.兼容Windows
 
 const NO_CONDITION string = "no condition, cannot match"
 const DEFAULT_COMMENT string = "code.babe push code"
@@ -189,4 +191,5 @@ func main() {
 	} else {
 		checkError(GitPush(DEFAULT_COMMENT, EMPTY))
 	}
+	fmt.Println("push success!")
 }
