@@ -10,7 +10,7 @@ import (
 // 定时任务的单位默认为秒(s)
 func CleanDesktop(t time.Duration, fn func()) {
 	ticker := time.NewTicker(time.Second * t)
-	for _ = range ticker.C {
+	for range ticker.C {
 		fn()
 	}
 }
@@ -27,5 +27,13 @@ func removeIntoTrash() {
 }
 
 func main() {
-	CleanDesktop(1, removeIntoTrash)
+	//args := os.Args
+	//if len(args) > 1 {
+	//	duration := args[1]
+	//	CleanDesktop(duration, removeIntoTrash)
+	//}
+
+	CleanDesktop(1, func() {
+		fmt.Println("tick")
+	})
 }
