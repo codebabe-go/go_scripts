@@ -19,7 +19,7 @@ import (
 // TODO: 1.完善各个continue func的功能 2.给出详细的下一步操作提示 3.给出参数完善日志输出(是否要输出到文件中) 4.兼容Windows
 
 const NO_CONDITION string = "no condition, cannot match"
-const DEFAULT_COMMENT string = "code.babe push code"
+const DEFAULT_COMMENT string = "commit"
 const UNMATCHED_CONDITION string = "cannot match condition"
 const CONTINUE string = "continue"
 const EMPTY string = ""
