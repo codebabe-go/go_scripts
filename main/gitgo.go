@@ -192,10 +192,21 @@ func goContinue(isContinued bool, fn func())  {
 	}
 }
 
+// 检查当前的git环境, 以error来标识是否正常
+func CheckGitEnvironment() {
+	result := do(NO_CONDITION, "git status")
+	if result.err != nil {
+		path := do(NO_CONDITION, "pwd").output
+		fmt.Printf("current path = %s which is not git repository, you shoul git init first", path)
+		os.Exit(-1)
+	}
+}
+
 func main() {
 	//result := do("ls", NO_CONDITION, "-l")
 	//fmt.Println(result.output)
 
+	CheckGitEnvironment()
 	fmt.Printf("current os is %s\n", runtime.GOOS)
 	args := os.Args[1:]
 	if len(args) == 2 {
