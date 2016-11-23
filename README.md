@@ -13,14 +13,17 @@
      * Windows: 环境变量中配置
      * *nix: 配置.bash_profile $PATH:$GO_PATH
   3. 生成二进制文件
-     go build ${project_path}/contrib/go_scripts/gitgo.go
+     * go build ${project_path}/gitgo.go
   4. 运行
-     假设你go build 时候的路径为build_path
-     * Windows: cmd -> cd build_path -> gitgo.exe comment push_branch(待补充)
-     * *nix: .bash_profile "alias gitgo=build_path/gitgo", 直接使用gitgo comment push_branch
+     * 假设你go build 时候的路径为build_path, 生成的二进制文件叫做 *nix(gitgo), windows(gitgo.exe)
+     * Windows: 为build生成的gitgoexe文件配置path环境变量, 然后在你存在git repository的目录下执行 gitgo.exe "comment" "push_branch"
+     * *nix: .bash_profile "alias gitgo=${build_path}/gitgo", 直接使用gitgo "comment" "push_branch"
   
 ## 缺点
-  这里不去获取本地的user信息, 需要保障的前提是本地git命令和git config配置是完善的  
-  还是需要手动去解决conflict
+* 不去获取本地的user信息, 需要保障的前提是本地git命令和git config配置是完善的  
+* 无法自动去解决冲突, 需要手动去解决conflict
   
+## 后续
+* 程序自动解决一些简单的问题正在开发, 加上skip机制
+
 ### 未完待续...
