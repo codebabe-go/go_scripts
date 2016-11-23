@@ -197,7 +197,7 @@ func CheckGitEnvironment() {
 	result := do(NO_CONDITION, "git status")
 	if result.err != nil {
 		if runtime.GOOS != WINDOWS {
-			path := do(NO_CONDITION, "pwd").output
+			path := strings.TrimRight(do(NO_CONDITION, "pwd").output, "\n")
 			fmt.Printf("current path = %s which is not git repository, you shoul git init first\n", path)
 		} else {
 			fmt.Println("current path is not git repository, you shoul git init first")
