@@ -2,7 +2,7 @@ package main
 
 /**
  * git 一键提交工具
- * 期间一旦遇到需要手动开那个解决错误, 就会丢出异常终止运行
+ * 期间一旦遇到需要手动解决的错误, 就会丢出异常终止程序
  */
 
 import (
@@ -29,11 +29,6 @@ const WINDOWS string = "windows"
 
 var ERROR_MAP map[string][]string = make(map[string][]string)
 
-type Result struct {
-	output string
-	err error
-}
-
 // error map information init
 func init()  {
 	ERROR_MAP["checkout"] = []string{}
@@ -41,6 +36,11 @@ func init()  {
 	ERROR_MAP["commit"] = []string{}
 	ERROR_MAP["pull"] = []string{}
 	ERROR_MAP["push"] = []string{}
+}
+
+type Result struct {
+	output string
+	err error
 }
 
 func NewResult(output string, errMsg string) *Result {
