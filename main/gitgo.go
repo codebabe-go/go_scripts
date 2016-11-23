@@ -144,7 +144,6 @@ func do(errorCondition, commandLine string) *Result {
 	fmt.Printf("command = '%s' will be executing\n", commandLine)
 	var cmd *exec.Cmd
 	var osInfo = runtime.GOOS
-	fmt.Printf("current os is %s\n", osInfo)
 	if osInfo == WINDOWS {
 		cmd = exec.Command("cmd.exe", "/c", commandLine)
 	} else if osInfo == OS_X {
@@ -197,6 +196,7 @@ func main() {
 	//result := do("ls", NO_CONDITION, "-l")
 	//fmt.Println(result.output)
 
+	fmt.Printf("current os is %s\n", runtime.GOOS)
 	args := os.Args[1:]
 	if len(args) == 2 {
 		checkError(GitPush(args[0], args[1]))
