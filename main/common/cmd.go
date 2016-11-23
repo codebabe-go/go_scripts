@@ -58,3 +58,9 @@ func Do(errorCondition, commandLine string) *Result {
 
 	return NewResult(result, "")
 }
+
+func CheckError(err error)  {
+	if err != nil {
+		 panic(err.Error())
+	}
+}
