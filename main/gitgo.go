@@ -13,6 +13,7 @@ import (
 	"errors"
 	"bytes"
 	"bufio"
+	"runtime"
 )
 
 // TODO: 1.完善各个continue func的功能 2.给出详细的下一步操作提示 3.给出参数完善日志输出(是否要输出到文件中) 4.兼容Windows
@@ -22,6 +23,9 @@ const DEFAULT_COMMENT string = "code.babe push code"
 const UNMATCHED_CONDITION string = "cannot match condition"
 const CONTINUE string = "continue"
 const EMPTY string = ""
+
+const OS_X string = "darwin"
+const WINDOWS string = "windows"
 
 var ERROR_MAP map[string][]string = make(map[string][]string)
 
@@ -138,7 +142,17 @@ func checkoutSuccess(info string) error {
 
 func do(errorCondition, commandLine string) *Result {
 	fmt.Printf("command = '%s' will be executing\n", commandLine)
-	var cmd = exec.Command("/bin/sh", "-c", commandLine)
+	var cmd *exec.Cmd
+	var osInfo = runtime.GOOS
+	fmt.Printf("current os is %s\n", osInfo)
+	if osInfo == WINDOWS {
+		cmd = exec.Command("cmd.exe", "/c", commandLine)
+	} else if osInfo == OS_X {
+		cmd = exec.Command("/bin/sh", "-c", commandLine)
+	} else {
+		fmt.Printf("cannot match your os = %s\n", osInfo)
+		os.Exit(-1)
+	}
 	var out, stderr bytes.Buffer
 	cmd.Stdout = &out
 	cmd.Stderr = &stderr
