@@ -32,6 +32,8 @@ func main() {
 	//	duration := args[1]
 	//	CleanDesktop(duration, removeIntoTrash)
 	//}
+	
+	// add some code to test git command
 
 	CleanDesktop(1, func() {
 		fmt.Println("tick")
