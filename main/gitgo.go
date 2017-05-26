@@ -24,6 +24,8 @@ const UNMATCHED_CONDITION string = "cannot match condition"
 const CONTINUE string = "continue"
 const EMPTY string = ""
 
+const CANNOT_PUSH_BRANCH string = "release"
+
 const OS_X string = "darwin"
 const WINDOWS string = "windows"
 
@@ -54,6 +56,10 @@ func NewResult(output string, errMsg string) *Result {
 
 func GitPush(comment, checkout string) error {
 	branch := checkoutBranch(checkout)
+	if strings.Contains(CANNOT_PUSH_BRANCH, branch) {
+		fmt.Printf("branch = %s is denied to commit\n", branch)
+		os.Exit(0)
+	}
 	fmt.Printf("branch = %s will be checked out\n", branch)
 	checkoutInfo := do(NO_CONDITION, "git checkout " + branch)
 	toContinue := checkError(checkoutInfo.err)
