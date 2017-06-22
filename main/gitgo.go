@@ -57,7 +57,7 @@ func NewResult(output string, errMsg string) *Result {
 func GitPush(comment, checkout string) error {
 	branch := checkoutBranch(checkout)
 	if strings.Contains(CANNOT_PUSH_BRANCH, branch) {
-		fmt.Printf("you want to push to %s, confirm to push y/n \n", branch)
+		fmt.Printf("you want to push to [[%s]], confirm to push y/n \n", branch)
 		reader := bufio.NewReader(os.Stdin)
 		input, _ := reader.ReadString('\n')
 		if strings.Compare(strings.ToLower(strings.TrimRight(input, "\n")), "y") != 0 {
